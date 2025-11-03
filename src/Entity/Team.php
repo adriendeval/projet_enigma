@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\TeamRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TeamRepository;
 
 #[ORM\Entity(repositoryClass: TeamRepository::class)]
 #[ORM\Table(name: '`tbl_team`')]
@@ -20,9 +20,6 @@ class Team
 
     #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
     private ?\DateTime $creationDate = null;
-
-    #[ORM\OneToOne(mappedBy: 'launchedBy', cascade: ['persist', 'remove'])]
-    private ?Game $game = null;
 
     public function getId(): ?int
     {
@@ -53,25 +50,8 @@ class Team
         return $this;
     }
 
-    public function getGame(): ?Game
+    public function __construct()
     {
-        return $this->game;
-    }
-
-    public function setGame(?Game $game): static
-    {
-        // unset the owning side of the relation if necessary
-        if ($game === null && $this->game !== null) {
-            $this->game->setLaunchedBy(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($game !== null && $game->getLaunchedBy() !== $this) {
-            $game->setLaunchedBy($this);
-        }
-
-        $this->game = $game;
-
-        return $this;
+        $this->creationDate = new \DateTime();
     }
 }

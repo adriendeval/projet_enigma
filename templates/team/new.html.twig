@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Team{% endblock %}
+{% block title %}Créer une équipe{% endblock %}
 
 {% block body %}
     <h1>Créer une nouvelle équipe</h1>
 
     {{ include('team/_form.html.twig') }}
 
-    <a href="{{ path('app_team_index') }}">Retour à la liste</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_team_index') }}">Retour à la liste</a>
+    {% endif %}
 {% endblock %}
