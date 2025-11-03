@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des équipes{% endblock %}
+
+{% block body %}
+	<h1>Liste des équipes</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Date de création</th>
+				{% if is_granted('ROLE_ADMIN') %}
+					<th>Actions</th>
+				{% endif %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for team in teams %}
+				<tr>
+					<td>{{ team.name }}</td>
+					<td>{{ team.creationDate ? team.creationDate|date('Y-m-d H:i:s T') : '' }}</td>
+
+					{% if is_granted('ROLE_ADMIN') %}
+						<td>
+							<a href="{{ path('app_team_show', {'id': team.id}) }}">show</a>
+							<a href="{{ path('app_team_edit', {'id': team.id}) }}">edit</a>
+						</td>
+					{% endif %}
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Aucune équipe trouvée. Cliquez sur le bouton ci-dessous pour en créer une.</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_team_new') }}" class="btn btn-primary">Créer une nouvelle équipe</a>
+{% endblock %}
