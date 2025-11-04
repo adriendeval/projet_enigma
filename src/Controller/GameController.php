@@ -12,9 +12,7 @@ final class GameController extends AbstractController
     #[Route('/game', name: 'app_game')]
     public function index(): Response
     {
-        return $this->render('game/index.html.twig', [
-            'controller_name' => 'GameController',
-        ]);
+        return $this->render('game/index.html.twig');
     }
 
     // Page qui affiche un message de création de la partie
@@ -23,16 +21,29 @@ final class GameController extends AbstractController
     #[Route('/game/start', name: 'app_game_start')]
     public function start(): Response
     {
-        return $this->render('game/start.html.twig', [
-            'controller_name' => 'GameController',
-        ]);
+        return $this->render('game/start.html.twig');
     }
 
     #[Route('/game/{id}/play', name: 'app_game_play')]
     public function play(int $id): Response
     {
         return $this->render('game/play.html.twig', [
-            'controller_name' => 'GameController',
+            'game_id' => $id,
+        ]);
+    }
+
+    #[Route('/game/{id}/submit', name: 'app_game_submit')]
+    public function submit(int $id): Response
+    {
+        return $this->render('game/submit.html.twig', [
+            'game_id' => $id,
+        ]);
+    }
+
+    #[Route('/game/{id}/end', name: 'app_game_end')]
+    public function end(int $id): Response
+    {
+        return $this->render('game/end.html.twig', [
             'game_id' => $id,
         ]);
     }
