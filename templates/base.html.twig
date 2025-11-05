@@ -30,26 +30,27 @@
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="/">Accueil</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/team/new">Créer une équipe</a>
-						</li>
+
 						{% if is_granted('ROLE_ADMIN') %}
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Administration
-							</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a class="dropdown-item" href="/user">Gérer les utilisateurs</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="/game">Gérer les parties</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="/enigma">Gérer les énigmes</a>
-								</li>
-							</ul>
-						</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Administration
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a class="dropdown-item" href="/user">Gérer les utilisateurs</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/game">Gérer les parties</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/enigma">Gérer les énigmes</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/team">Gérer les équipes</a>
+									</li>
+								</ul>
+							</li>
 						{% endif %}
 						<ul class="navbar-nav ms-auto mb-2 mb-lg-0 justify-content-end">
 							{% if app.user %}
@@ -67,7 +68,8 @@
 			</div>
 		</nav>
 
-		<div class="container mt-4"> {% block body %}{% endblock %}
-			</div>
+		<div class="container mt-4">
+			{% block body %}{% endblock %}
+		</div>
 		</body>
 	</html>

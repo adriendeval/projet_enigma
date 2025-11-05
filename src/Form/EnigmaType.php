@@ -14,13 +14,20 @@ class EnigmaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('createdBy', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
+            ->add('title', null, [
+                'label' => 'Titre',
+                'attr' => [
+                    'placeholder' => 'Entrez le titre de l\'énigme',
+                    'class' => 'form-control',
+                ],
             ])
-        ;
+            ->add('description', null, [
+                'label' => 'Description',
+                'attr' => [
+                    'placeholder' => 'Entrez la description de l\'énigme',
+                    'class' => 'form-control',
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

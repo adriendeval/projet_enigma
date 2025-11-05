@@ -16,7 +16,7 @@ class GameType extends AbstractType
         $builder
             ->add('launchedBy', EntityType::class, [
                 'class' => Team::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }
