@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Thumbnail{% endblock %}
+
+{% block body %}
+    <h1>Edit Thumbnail</h1>
+
+    {{ include('thumbnail/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_thumbnail_index') }}">back to list</a>
+
+    {{ include('thumbnail/_delete_form.html.twig') }}
+{% endblock %}

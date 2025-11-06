@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Thumbnail{% endblock %}
+
+{% block body %}
+    <h1>Thumbnail</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ thumbnail.id }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ thumbnail.image }}</td>
+            </tr>
+            <tr>
+                <th>Information</th>
+                <td>{{ thumbnail.information }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_thumbnail_index') }}">back to list</a>
+
+    <a href="{{ path('app_thumbnail_edit', {'id': thumbnail.id}) }}">edit</a>
+
+    {{ include('thumbnail/_delete_form.html.twig') }}
+{% endblock %}

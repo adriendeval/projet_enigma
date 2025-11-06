@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!{% endblock %}
+			{% block title %}Welcome!
+			{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
 		{% block stylesheets %}
@@ -20,9 +21,7 @@
 	<body>
 		<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="/">
-                    <img src="/images/logo.png" alt="Logo" width="24" height="24" class="d-inline-block"> Projet Enigma
-                </a>
+				<a class="navbar-brand" href="/">Projet Enigma</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -31,22 +30,36 @@
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="/">Accueil</a>
 						</li>
+						{% if not app.user %}
 						<li class="nav-item">
-							<a class="nav-link" href="#">None</a>
+							<a class="nav-link" href="/login">Connexion</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">None</a>
+							<a class="nav-link" href="#">Inscription</a>
 						</li>
+						{% endif %}
+						{% if app.user %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Gestion des éléments
+							</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="/enigma">Énigmes</a></li>
+								<li><a class="dropdown-item" href="/type">Types d'énigmes</a></li>
+								<li><a class="dropdown-item" href="/thumbnail">Images d'énigmes</a></li>
+								{# <li><hr class="dropdown-divider"></li> #}
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/logout">Déconnexion</a>
+						</li>
+						{% endif %}
 					</ul>
-					<span class="navbar-text">
-						Navbar text with an inline element
-					</span>
 				</div>
 			</div>
 		</nav>
 
-		<div class="container mt-4">
-		    {% block body %}{% endblock %}
-		</div>
-	</body>
-</html>
+		<div class="container mt-4"> {% block body %}{% endblock %}
+			</div>
+		</body>
+	</html>
