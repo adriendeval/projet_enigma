@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
 		<title>
@@ -31,35 +31,59 @@
 							<a class="nav-link active" aria-current="page" href="/">Accueil</a>
 						</li>
 						{% if not app.user %}
-						<li class="nav-item">
-							<a class="nav-link" href="/login">Connexion</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Inscription</a>
-						</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/login">Connexion</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/register">Inscription</a>
+							</li>
+						{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Gestion des éléments
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a class="dropdown-item" href="/avatar">Gestion des avatars</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/enigma">Gestion des énigmes</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/game">Gestion des jeux</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/setting">Gestion des paramètres</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/team">Gestion des équipes</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/thumbnail">Gestion des images</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/type">Gestion des types</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/user">Gestion des utilisateurs</a>
+									</li>
+									{# <li><hr class="dropdown-divider"></li> #}
+								</ul>
+							</li>
 						{% endif %}
 						{% if app.user %}
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							Gestion des éléments
-							</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="/enigma">Énigmes</a></li>
-								<li><a class="dropdown-item" href="/type">Types d'énigmes</a></li>
-								<li><a class="dropdown-item" href="/thumbnail">Images d'énigmes</a></li>
-								{# <li><hr class="dropdown-divider"></li> #}
-							</ul>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/logout">Déconnexion</a>
-						</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/logout">Déconnexion</a>
+							</li>
 						{% endif %}
-					</ul>
+						</ul>
+					</div>
 				</div>
-			</div>
-		</nav>
+			</nav>
 
-		<div class="container mt-4"> {% block body %}{% endblock %}
-			</div>
+			<div class="container mt-4"> {% block body %}{% endblock %}
+				</div>
+			</body>
 		</body>
 	</html>

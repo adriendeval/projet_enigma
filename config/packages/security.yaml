@@ -35,9 +35,17 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
-    
+        - { path: ^/enigma, roles: ROLE_ADMIN }
+        - { path: ^/avatar, roles: ROLE_ADMIN }
+        - { path: ^/thumbnail, roles: ROLE_ADMIN }
+        - { path: ^/type, roles: ROLE_ADMIN }
+        - { path: ^/game, roles: ROLE_ADMIN }
+        - { path: ^/setting, roles: ROLE_ADMIN }
+        - { path: ^/team, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_ADMIN }
+
     role_hierarchy:
+        ROLE_PROF:        ROLE_USER
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
