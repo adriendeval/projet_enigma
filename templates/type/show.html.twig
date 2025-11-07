@@ -3,12 +3,12 @@
 {% block title %}Type{% endblock %}
 
 {% block body %}
-    <h1>Type</h1>
+    <h1>Détails du type {{ type.label }}</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ type.id }}</td>
             </tr>
             <tr>
@@ -18,9 +18,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_type_index') }}">back to list</a>
+    <a href="{{ path('app_type_index') }}" class="btn btn-secondary">Retour</a>
 
-    <a href="{{ path('app_type_edit', {'id': type.id}) }}">edit</a>
+    <a href="{{ path('app_type_edit', {'id': type.id}) }}" class="btn btn-primary">Modifier</a>
 
     {{ include('type/_delete_form.html.twig') }}
 {% endblock %}

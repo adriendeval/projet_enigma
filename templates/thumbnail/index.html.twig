@@ -1,37 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Thumbnail index{% endblock %}
+{% block title %}Liste des images{% endblock %}
 
 {% block body %}
-    <h1>Thumbnail index</h1>
+    <h1>Liste des images</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Image</th>
-                <th>Information</th>
-                <th>actions</th>
+                <th>Information / Note explicative</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for thumbnail in thumbnails %}
             <tr>
-                <td>{{ thumbnail.id }}</td>
                 <td>{{ thumbnail.image }}</td>
                 <td>{{ thumbnail.information }}</td>
                 <td>
-                    <a href="{{ path('app_thumbnail_show', {'id': thumbnail.id}) }}">show</a>
-                    <a href="{{ path('app_thumbnail_edit', {'id': thumbnail.id}) }}">edit</a>
+                    <a href="{{ path('app_thumbnail_show', {'id': thumbnail.id}) }}" class="text-secondary">Afficher</a>
+                    <a href="{{ path('app_thumbnail_edit', {'id': thumbnail.id}) }}" class="text-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucune image trouvée...</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_thumbnail_new') }}">Create new</a>
+    <a href="{{ path('app_thumbnail_new') }}" class="btn btn-primary">Nouvelle image</a>
 {% endblock %}

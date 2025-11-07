@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Team{% endblock %}
+{% block title %}{{ team.name }} - Modification{% endblock %}
 
 {% block body %}
-    <h1>Edit Team</h1>
+    <h1>{{ team.name }} - Modification</h1>
 
-    {{ include('team/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('team/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('app_team_index') }}">back to list</a>
+    <a href="{{ path('app_team_index') }}" class="btn btn-secondary">Retour à la liste</a>
 
     {{ include('team/_delete_form.html.twig') }}
 {% endblock %}

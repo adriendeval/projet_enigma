@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Enigma{% endblock %}
+{% block title %}Liste des énigmes{% endblock %}
 
 {% block body %}
-    <h1>Enigma</h1>
+    <h1>Liste des énigmes</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ enigma.id }}</td>
             </tr>
             <tr>
@@ -16,7 +16,7 @@
                 <td>{{ enigma.position }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ enigma.title }}</td>
             </tr>
             <tr>
@@ -24,15 +24,15 @@
                 <td>{{ enigma.instruction }}</td>
             </tr>
             <tr>
-                <th>SecretCode</th>
+                <th>Code secret</th>
                 <td>{{ enigma.secretCode }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_enigma_index') }}">back to list</a>
+    <a href="{{ path('app_enigma_index') }}" class="btn btn-secondary">Retour à la liste</a>
 
-    <a href="{{ path('app_enigma_edit', {'id': enigma.id}) }}">edit</a>
+    <a href="{{ path('app_enigma_edit', {'id': enigma.id}) }}" class="btn btn-primary">Modifier</a>
 
     {{ include('enigma/_delete_form.html.twig') }}
 {% endblock %}

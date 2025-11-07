@@ -1,35 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Type index{% endblock %}
+{% block title %}Liste des types{% endblock %}
 
 {% block body %}
-    <h1>Type index</h1>
+    <h1>Liste des types</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for type in types %}
             <tr>
-                <td>{{ type.id }}</td>
                 <td>{{ type.label }}</td>
                 <td>
-                    <a href="{{ path('app_type_show', {'id': type.id}) }}">show</a>
-                    <a href="{{ path('app_type_edit', {'id': type.id}) }}">edit</a>
+                    <a href="{{ path('app_type_show', {'id': type.id}) }}" class="text-secondary">Afficher</a>
+                    <a href="{{ path('app_type_edit', {'id': type.id}) }}" class="text-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun type trouvé...</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_type_new') }}">Create new</a>
+    <a href="{{ path('app_type_new') }}" class="btn btn-primary">Nouveau type</a>
 {% endblock %}

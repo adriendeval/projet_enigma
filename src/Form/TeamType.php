@@ -14,13 +14,26 @@ class TeamType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', null, [
+                'label' => 'Nom',
+                'attr' => [
+                    'placeholder' => 'Entrez le nom de l\'équipe'
+                ],
+                'row_attr' => [
+                    'class' => 'form-floating mb-3',
+                ],
+            ])
             ->add('position')
             ->add('currentEnigma')
             ->add('note')
             ->add('avatar', EntityType::class, [
                 'class' => Avatar::class,
-                'choice_label' => 'id',
+                'choice_label' => 'filename',
+                'label' => 'Avatar',
+                'placeholder' => 'Choisissez un avatar',
+                'row_attr' => [
+                    'class' => 'mb-3',
+                ],
             ])
         ;
     }

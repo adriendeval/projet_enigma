@@ -1,39 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Game index{% endblock %}
+{% block title %}Liste des jeux{% endblock %}
 
 {% block body %}
-    <h1>Game index</h1>
+    <h1>Liste des jeux</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>WelcomeMessage</th>
-                <th>WelcomeImage</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Message de bienvenue</th>
+                <th>Image de bienvenue</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for game in games %}
             <tr>
-                <td>{{ game.id }}</td>
                 <td>{{ game.title }}</td>
                 <td>{{ game.welcomeMessage }}</td>
                 <td>{{ game.welcomeImage }}</td>
                 <td>
-                    <a href="{{ path('app_game_show', {'id': game.id}) }}">show</a>
-                    <a href="{{ path('app_game_edit', {'id': game.id}) }}">edit</a>
+                    <a href="{{ path('app_game_show', {'id': game.id}) }}" class="text-secondary">Afficher</a>
+                    <a href="{{ path('app_game_edit', {'id': game.id}) }}" class="text-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun jeu trouvé...</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_game_new') }}">Create new</a>
+    <a href="{{ path('app_game_new') }}" class="btn btn-primary">Nouveau jeu</a>
 {% endblock %}

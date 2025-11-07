@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Enigma{% endblock %}
+{% block title %}Modification de l'énigme n°{{ enigma.id }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Enigma</h1>
+    <h1>Modification de l'énigme n°{{ enigma.id }}</h1>
 
-    {{ include('enigma/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('enigma/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('app_enigma_index') }}">back to list</a>
+    <a href="{{ path('app_enigma_index') }}" class="btn btn-secondary">Retour à la liste</a>
 
     {{ include('enigma/_delete_form.html.twig') }}
 {% endblock %}

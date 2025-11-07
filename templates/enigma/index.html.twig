@@ -1,41 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Enigma index{% endblock %}
+{% block title %}Liste des énigmes{% endblock %}
 
 {% block body %}
-    <h1>Enigma index</h1>
+    <h1>Liste des énigmes</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Position</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Instruction</th>
-                <th>SecretCode</th>
-                <th>actions</th>
+                <th>Code secret</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for enigma in enigmas %}
             <tr>
-                <td>{{ enigma.id }}</td>
                 <td>{{ enigma.position }}</td>
                 <td>{{ enigma.title }}</td>
                 <td>{{ enigma.instruction }}</td>
                 <td>{{ enigma.secretCode }}</td>
                 <td>
-                    <a href="{{ path('app_enigma_show', {'id': enigma.id}) }}">show</a>
-                    <a href="{{ path('app_enigma_edit', {'id': enigma.id}) }}">edit</a>
+                    <a href="{{ path('app_enigma_show', {'id': enigma.id}) }}" class="text-primary">Afficher</a>
+                    <a href="{{ path('app_enigma_edit', {'id': enigma.id}) }}" class="text-secondary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucune énigme trouvée...</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_enigma_new') }}">Create new</a>
+    <a href="{{ path('app_enigma_new') }}" class="btn btn-primary">Nouvelle énigme</a>
 {% endblock %}

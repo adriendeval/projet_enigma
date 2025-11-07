@@ -17,6 +17,14 @@ class SettingType extends AbstractType
             ->add('game', EntityType::class, [
                 'class' => Game::class,
                 'choice_label' => 'id',
+                'label' => 'Paramètre de jeu',
+                'placeholder' => 'Sélectionnez un paramètre de jeu',
+                'attr' => [
+                    'placeholder' => 'Sélectionnez un paramètre de jeu',
+                ],
+                'row_attr' => [
+                    'class' => 'form-floating mb-3',
+                ],
             ])
         ;
     }

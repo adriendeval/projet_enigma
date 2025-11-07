@@ -12,7 +12,15 @@ class AvatarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('filename')
+            ->add('filename', null, [
+                'label' => 'Nom du fichier / de l\'image',
+                'attr' => [
+                    'placeholder' => 'Entrez le nom du fichier'
+                ],
+                    'row_attr' => [
+                    'class' => 'form-floating mb-3',
+                ],
+            ])
         ;
     }
 

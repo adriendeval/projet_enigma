@@ -12,9 +12,33 @@ class GameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('welcomeMessage')
-            ->add('welcomeImage')
+            ->add('title', null, [
+                'label' => 'Nom du jeu',
+                'attr' => [
+                    'placeholder' => 'Entrez le nom du jeu',
+                ],
+                'row_attr' => [
+                    'class' => 'form-floating mb-3',
+                ],
+            ])
+            ->add('welcomeMessage', null, [
+                'label' => 'Message de bienvenue',
+                'attr' => [
+                    'placeholder' => 'Entrez le message de bienvenue',
+                ],
+                'row_attr' => [
+                    'class' => 'form-floating mb-3',
+                ],
+            ])
+            ->add('welcomeImage', null, [
+                'label' => 'Image de bienvenue',
+                'attr' => [
+                    'placeholder' => 'Téléchargez l\'image de bienvenue',
+                ],
+                'row_attr' => [
+                    'class' => 'form-floating mb-3',
+                ],
+            ])
         ;
     }
 

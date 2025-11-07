@@ -12,7 +12,15 @@ class TypeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('label')
+            ->add('label', null, [
+                'label' => 'Nom du type',
+                'attr' => [
+                    'placeholder' => 'Entrez le nom du type',
+                ],
+                'row_attr' => [
+                    'class' => 'form-floating mb-3',
+                ],
+            ])
         ;
     }
 

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Thumbnail{% endblock %}
+{% block title %}Image n°{{ thumbnail.id }} - Modification{% endblock %}
 
 {% block body %}
-    <h1>Edit Thumbnail</h1>
+    <h1>Modification de l'image n°{{ thumbnail.id }}</h1>
 
-    {{ include('thumbnail/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('thumbnail/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('app_thumbnail_index') }}">back to list</a>
+    <a href="{{ path('app_thumbnail_index') }}" class="btn btn-secondary">Retour</a>
 
     {{ include('thumbnail/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Setting index{% endblock %}
+{% block title %}Liste des paramètres{% endblock %}
 
 {% block body %}
-    <h1>Setting index</h1>
+    <h1>Liste des paramètres</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -17,17 +16,17 @@
             <tr>
                 <td>{{ setting.id }}</td>
                 <td>
-                    <a href="{{ path('app_setting_show', {'id': setting.id}) }}">show</a>
-                    <a href="{{ path('app_setting_edit', {'id': setting.id}) }}">edit</a>
+                    <a href="{{ path('app_setting_show', {'id': setting.id}) }}" class="text-secondary">Afficher</a>
+                    <a href="{{ path('app_setting_edit', {'id': setting.id}) }}" class="text-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="2">no records found</td>
+                <td colspan="2">Aucun paramètre trouvé...</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_setting_new') }}">Create new</a>
+    <a href="{{ path('app_setting_new') }}" class="btn btn-primary">Nouveau paramètre</a>
 {% endblock %}

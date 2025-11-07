@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Avatar{% endblock %}
+{% block title %}Détails de l'avatar {{ avatar.filename }}{% endblock %}
 
 {% block body %}
-    <h1>Avatar</h1>
+    <h1>Détails de l'avatar {{ avatar.filename }}</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ avatar.id }}</td>
             </tr>
             <tr>
-                <th>Filename</th>
+                <th>Nom du fichier / de l'image</th>
                 <td>{{ avatar.filename }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_avatar_index') }}">back to list</a>
+    <a href="{{ path('app_avatar_index') }}" class="btn btn-secondary">Retour à la liste</a>
 
-    <a href="{{ path('app_avatar_edit', {'id': avatar.id}) }}">edit</a>
+    <a href="{{ path('app_avatar_edit', {'id': avatar.id}) }}" class="btn btn-primary">Modifier</a>
 
     {{ include('avatar/_delete_form.html.twig') }}
 {% endblock %}
