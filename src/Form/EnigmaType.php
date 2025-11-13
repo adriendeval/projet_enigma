@@ -22,9 +22,16 @@ class EnigmaType extends AbstractType
                     'class' => 'form-select mb-3',
                 ],
             ])
-            ->add('title')
-            ->add('instruction')
-            ->add('secretCode')
+            ->add('title', null, [
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                ],
+            ])
+            ->add('instruction', null, [
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                ],
+            ])
             ->add('type', EntityType::class, [
                 'class' => Type::class,
                 'choice_label' => 'label',

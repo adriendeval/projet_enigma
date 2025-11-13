@@ -13,9 +13,9 @@ class AvatarType extends AbstractType
     {
         $builder
             ->add('filename', null, [
-                'label' => 'Nom du fichier / de l\'image',
+                'label' => 'Lien du fichier / de l\'image',
                 'attr' => [
-                    'placeholder' => 'Entrez le nom du fichier'
+                    'placeholder' => 'Entrez le lien du fichier',
                 ],
                     'row_attr' => [
                     'class' => 'form-floating mb-3',

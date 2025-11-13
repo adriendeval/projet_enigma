@@ -24,7 +24,7 @@ class TeamType extends AbstractType
                 ],
             ])
             ->add('position')
-            ->add('currentEnigma')
+            ->add('currentEnigma', null)
             ->add('note')
             ->add('avatar', EntityType::class, [
                 'class' => Avatar::class,
@@ -33,6 +33,9 @@ class TeamType extends AbstractType
                 'placeholder' => 'Choisissez un avatar',
                 'row_attr' => [
                     'class' => 'mb-3',
+                ],
+                'attr' => [
+                    'class' => 'form-select',
                 ],
             ])
         ;

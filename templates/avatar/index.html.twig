@@ -3,19 +3,19 @@
 {% block title %}Liste des avatars{% endblock %}
 
 {% block body %}
-    <h1>Liste des avatars</h1>
+    <h1><i class="bi bi-person-circle"></i>  Liste des avatars</h1>
 
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nom du fichier / de l'image</th>
+                <th>Lien du fichier / de l'image</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for avatar in avatars %}
             <tr>
-                <td>{{ avatar.filename }}</td>
+                <td><img src="{{ avatar.filename }}" alt="{{ avatar.filename }}" title="{{ avatar.filename }}" style="width: 30px; height: 30px;"></td>
                 <td>
                     <a href="{{ path('app_avatar_show', {'id': avatar.id}) }}" class="text-primary">Afficher</a>
                     <a href="{{ path('app_avatar_edit', {'id': avatar.id}) }}" class="text-secondary">Modifier</a>

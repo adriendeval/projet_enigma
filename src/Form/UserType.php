@@ -36,9 +36,11 @@ class UserType extends AbstractType
                 'expanded' => true,
             ])
             ->add('password', null, [
-                'label' => 'Mot de passe',
+                'label' => 'Mot de passe (hashé)',
                 'attr' => [
-                    'placeholder' => 'Entrez votre mot de passe',
+                    'disabled' => 'disabled',
+                    'type' => 'password',
+                    'title' => 'Le mot de passe est hashé et ne peut pas être modifié ici.',
                 ],
                 'row_attr' => [
                     'class' => 'form-floating mb-3',
