@@ -4,13 +4,15 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Hello!</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/adrien/Documents/projet_enigma/src/Controller/MainController.php</code></li>
-        <li>Your template at <code>C:/Users/adrien/Documents/projet_enigma/templates/main/index.html.twig</code></li>
-    </ul>
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="mb-4">Bienvenue sur le Projet Enigma</h1>
+        <p class="lead mb-5">Ceci est la page d'accueil de l'application.</p>
+        
+        <a href="#" class="btn btn-primary btn-lg" id="create-team-button">
+            Créer une équipe <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
 </div>
+
 {% endblock %}
