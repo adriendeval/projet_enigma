@@ -41,6 +41,7 @@ security:
         - { path: ^/type, roles: ROLE_ADMIN }
         - { path: ^/game, roles: ROLE_ADMIN }
         - { path: ^/setting, roles: ROLE_ADMIN }
+        - { path: ^/team/new, roles:  } # Les utilisateurs non connectés peuvent uniquement créer une équipe
         - { path: ^/team, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_ADMIN }
 

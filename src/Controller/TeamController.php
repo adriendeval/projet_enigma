@@ -25,6 +25,11 @@ final class TeamController extends AbstractController
     #[Route('/new', name: 'app_team_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // $user = $this->getUser();
+        // if (!$user) {
+        //     return $this->redirectToRoute('app_login');
+        // }
+        
         $team = new Team();
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);

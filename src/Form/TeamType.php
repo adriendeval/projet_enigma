@@ -23,28 +23,31 @@ class TeamType extends AbstractType
                     'class' => 'form-floating mb-3',
                 ],
             ])
-            ->add('position')
-            ->add('currentEnigma', null)
-            ->add('note')
             ->add('avatar', EntityType::class, [
                 'class' => Avatar::class,
                 'choice_label' => 'filename',
                 'label' => 'Avatar',
                 'placeholder' => 'Choisissez un avatar',
                 'row_attr' => [
-                    'class' => 'mb-3',
+                    'class' => 'form-floating mb-3',
                 ],
                 'attr' => [
                     'class' => 'form-select',
                 ],
-            ])
-        ;
+            ]);
+        if ($options['is_logged_in']) {
+            $builder
+                ->add('position')
+                ->add('currentEnigma', null)
+                ->add('note');
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Team::class,
+            'is_logged_in' => false,
         ]);
     }
 }
