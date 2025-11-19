@@ -15,30 +15,36 @@ class TeamType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label' => 'Nom',
-                'attr' => [
-                    'placeholder' => 'Entrez le nom de l\'équipe'
-                ],
-                'row_attr' => [
-                    'class' => 'form-floating mb-3',
-                ],
+            'label' => 'Nom',
+            'attr' => [
+                'placeholder' => 'Entrez le nom de l\'équipe',
+                'class' => 'form-control',
+            ],
+            'row_attr' => [
+                'class' => 'form-floating mb-3',
+            ],
             ])
             ->add('avatar', EntityType::class, [
-                'class' => Avatar::class,
-                'choice_label' => 'filename',
-                'label' => 'Avatar',
-                'placeholder' => 'Choisissez un avatar',
-                'row_attr' => [
-                    'class' => 'form-floating mb-3',
-                ],
-                'attr' => [
-                    'class' => 'form-select',
-                ],
+            'class' => Avatar::class,
+            'choice_label' => 'filename',
+            'label' => 'Avatar',
+            'placeholder' => false,
+            'expanded' => true,
+            'multiple' => false,
+            'choice_attr' => function (Avatar $avatar) {
+                return ['data-image-url' => $avatar->getFilename()];
+            },
+            'label_html' => true,
+            'choice_label' => function (Avatar $avatar) {
+                return sprintf('<img src="%s" alt="Avatar" style="width: 35px; height: 35px; object-fit: cover;">', $avatar->getFilename());
+            },
+            'row_attr' => ['class' => 'mb-3',
+            ],
             ]);
         if ($options['is_logged_in']) {
             $builder
                 ->add('position')
-                ->add('currentEnigma', null)
+                ->add('currentEnigma')
                 ->add('note');
         }
     }
