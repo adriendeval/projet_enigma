@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails des paramètres{% endblock %}
+
+{% block body %}
+    <h1>Détails des paramètres</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ setting.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_setting_index') }}" class="btn btn-secondary">Retour à la liste</a>
+
+    <a href="{{ path('app_setting_edit', {'id': setting.id}) }}" class="btn btn-primary">Modifier</a>
+
+    {{ include('setting/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des types{% endblock %}
+
+{% block body %}
+    <h1><i class="bi bi-hash"></i> Liste des types</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type in types %}
+            <tr>
+                <td>{{ type.label }}</td>
+                <td>
+                    <a href="{{ path('app_type_show', {'id': type.id}) }}" class="text-secondary">Afficher</a>
+                    <a href="{{ path('app_type_edit', {'id': type.id}) }}" class="text-primary">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun type trouvé...</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_new') }}" class="btn btn-primary">Nouveau type</a>
+{% endblock %}

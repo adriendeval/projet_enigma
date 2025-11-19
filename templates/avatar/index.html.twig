@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des avatars{% endblock %}
+
+{% block body %}
+    <h1><i class="bi bi-person-circle"></i>  Liste des avatars</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Lien du fichier / de l'image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for avatar in avatars %}
+            <tr>
+                <td><img src="{{ avatar.filename }}" alt="{{ avatar.filename }}" title="{{ avatar.filename }}" style="width: 30px; height: 30px;"></td>
+                <td>
+                    <a href="{{ path('app_avatar_show', {'id': avatar.id}) }}" class="text-primary">Afficher</a>
+                    <a href="{{ path('app_avatar_edit', {'id': avatar.id}) }}" class="text-secondary">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucune image trouvée...</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_avatar_new') }}" class="btn btn-primary">Nouvel avatar</a>
+{% endblock %}

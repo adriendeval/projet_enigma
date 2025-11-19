@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des images{% endblock %}
+
+{% block body %}
+    <h1><i class="bi bi-image"></i> Liste des images</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Information / Note explicative</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for thumbnail in thumbnails %}
+            <tr>
+                <td>{{ thumbnail.image }}</td>
+                <td>{{ thumbnail.information }}</td>
+                <td>
+                    <a href="{{ path('app_thumbnail_show', {'id': thumbnail.id}) }}" class="text-secondary">Afficher</a>
+                    <a href="{{ path('app_thumbnail_edit', {'id': thumbnail.id}) }}" class="text-primary">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune image trouvée...</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_thumbnail_new') }}" class="btn btn-primary">Nouvelle image</a>
+{% endblock %}

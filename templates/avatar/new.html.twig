@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel avatar{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouvel avatar</h1>
+
+    {{ include('avatar/_form.html.twig') }}
+
+    <a href="{{ path('app_avatar_index') }}" class="btn btn-secondary">Retour à la liste</a>
+{% endblock %}
