@@ -4,13 +4,18 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Hello!</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/adrien/Documents/projet_enigma/src/Controller/MainController.php</code></li>
-        <li>Your template at <code>C:/Users/adrien/Documents/projet_enigma/templates/main/index.html.twig</code></li>
-    </ul>
+<div class="jumbotron text-center">
+    <h1 class="display-4">Bienvenue sur le Projet Enigma</h1>
+    <p class="lead">Résolvez des énigmes en équipe et relevez le défi !
+    <br>Si vous y arrivez, c'est que vous êtes faits pour le BTS SIO.</p>
+    <hr class="my-4">
+    <p><b>Pour commencer, vous devez vous créer une équipe.</b></p>
+    <p>Cliquez sur le bouton ci-dessous pour créer votre équipe puis revenez sur cette page.</p>
+    <a class="btn btn-primary btn-lg" href="{{ path('app_team_new') }}" role="button" target="_blank">Créer une équipe</a>
+    <br>
+    <br>
+    <p>Une fois votre équipe créée, vous pouvez lancer une partie et commencer le jeu !</p>
+    <a class="btn btn-success btn-lg" href="{{ path('app_game_new') }}" role="button" target="_blank">Lancer la partie</a>
 </div>
+
 {% endblock %}

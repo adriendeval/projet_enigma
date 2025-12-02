@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle partie{% endblock %}
+
+{% block body %}
+	<h1>Créer une nouvelle partie</h1>
+
+	{{ include('game/_form.html.twig') }}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_game_index') }}">Retour à la liste</a>
+	{% endif %}
+{% endblock %}

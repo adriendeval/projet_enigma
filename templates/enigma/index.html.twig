@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des énigmes{% endblock %}
+
+{% block body %}
+    <h1>Liste des énigmes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                {% if is_granted('ROLE_ADMIN') %}
+					<th>Actions</th>
+				{% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for enigma in enigmas %}
+            <tr>
+                <td>{{ enigma.title }}</td>
+                <td>{{ enigma.description }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                <td>
+                    <a href="{{ path('app_enigma_show', {'id': enigma.id}) }}">Détails</a>
+                    <a href="{{ path('app_enigma_edit', {'id': enigma.id}) }}">Modifier</a>
+                </td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune énigme trouvée. Cliquez sur le bouton ci-dessous pour en créer une.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_enigma_new') }}" class="btn btn-primary">Nouvelle énigme</a>
+{% endblock %}

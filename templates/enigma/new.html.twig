@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle énigme{% endblock %}
+
+{% block body %}
+	<h1>Créer une nouvelle énigme</h1>
+
+	{{ include('enigma/_form.html.twig') }}
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<br>
+		<a href="{{ path('app_enigma_index') }}">Retour à la liste</a>
+	{% endif %}
+{% endblock %}
