@@ -1,21 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Projet Enigma{% endblock %}
+{% block title %}Accueil - Projet Enigma{% endblock %}
 
 {% block body %}
 
-<div class="jumbotron text-center">
-    <h1 class="display-4">Bienvenue sur le Projet Enigma</h1>
-    <p class="lead">Résolvez des énigmes en équipe et relevez le défi !
-    <br>Si vous y arrivez, c'est que vous êtes faits pour le BTS SIO.</p>
-    <hr class="my-4">
-    <p><b>Pour commencer, vous devez vous créer une équipe.</b></p>
-    <p>Cliquez sur le bouton ci-dessous pour créer votre équipe puis revenez sur cette page.</p>
-    <a class="btn btn-primary btn-lg" href="{{ path('app_team_new') }}" role="button" target="_blank">Créer une équipe</a>
-    <br>
-    <br>
-    <p>Une fois votre équipe créée, vous pouvez lancer une partie et commencer le jeu !</p>
-    <a class="btn btn-success btn-lg" href="{{ path('app_game_new') }}" role="button" target="_blank">Lancer la partie</a>
+<div class="px-4 py-16 mx-auto max-w-4xl text-center">
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Bienvenue sur le Projet Enigma 🔐</h1>
+        <p class="text-lg text-gray-600 mb-2">
+            Résolvez des énigmes en équipe et relevez le défi !
+        </p>
+        <p class="text-base text-gray-500">
+            Si vous y arrivez, c'est que vous êtes faits pour le BTS SIO.
+        </p>
+    </div>
+    
+    <div class="border-t border-gray-200 my-8"></div>
+    
+    <div class="space-y-8">
+        <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Étape 1 : Créer votre équipe</h2>
+            <p class="text-gray-600 mb-6">
+                Pour commencer, vous devez créer une équipe. Cliquez sur le bouton ci-dessous pour créer votre équipe puis revenez sur cette page.
+            </p>
+            <a href="{{ path('app_team_new') }}" target="_blank" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200">
+                Créer une équipe
+            </a>
+        </div>
+        
+        <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Étape 2 : Lancer la partie</h2>
+            <p class="text-gray-600 mb-6">
+                Une fois votre équipe créée, vous pouvez lancer une partie et commencer le jeu !
+            </p>
+            <a href="{{ path('app_game_new') }}" target="_blank" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
+                Lancer la partie
+            </a>
+        </div>
+    </div>
+    
+    <div class="mt-12 p-6 bg-gray-50 rounded-lg border border-gray-200">
+        <p class="text-sm text-gray-500">
+            💡 <strong>Astuce :</strong> Assurez-vous d'avoir bien créé votre équipe avant de lancer la partie. Vous pouvez également consulter les règles du jeu dans la section administration si vous êtes professeur.
+        </p>
+    </div>
 </div>
 
 {% endblock %}
