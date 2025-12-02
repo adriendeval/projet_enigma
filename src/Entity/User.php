@@ -34,15 +34,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $isVerified = false;
+
     /**
-     * @var Collection<int, Enigma>
+     * @var Collection<int, Game>
      */
-    #[ORM\OneToMany(targetEntity: Enigma::class, mappedBy: 'createdBy')]
-    private Collection $enigmas;
+    #[ORM\OneToMany(targetEntity: Game::class, mappedBy: 'user')]
+    private Collection $games;
 
     public function __construct()
     {
-        $this->enigmas = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,30 +129,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // @deprecated, to be removed when upgrading to Symfony 8
     }
 
-    /**
-     * @return Collection<int, Enigma>
-     */
-    public function getEnigmas(): Collection
+    public function isVerified(): bool
     {
-        return $this->enigmas;
+        return $this->isVerified;
     }
 
-    public function addEnigma(Enigma $enigma): static
+    public function setIsVerified(bool $isVerified): static
     {
-        if (!$this->enigmas->contains($enigma)) {
-            $this->enigmas->add($enigma);
-            $enigma->setCreatedBy($this);
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Game>
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    public function addGame(Game $game): static
+    {
+        if (!$this->games->contains($game)) {
+            $this->games->add($game);
+            $game->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeEnigma(Enigma $enigma): static
+    public function removeGame(Game $game): static
     {
-        if ($this->enigmas->removeElement($enigma)) {
+        if ($this->games->removeElement($game)) {
             // set the owning side to null (unless already changed)
-            if ($enigma->getCreatedBy() === $this) {
-                $enigma->setCreatedBy(null);
+            if ($game->getUser() === $this) {
+                $game->setUser(null);
             }
         }
 

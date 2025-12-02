@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EnigmaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,11 +20,33 @@ class Enigma
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[ORM\Column(type: 'integer')]
+    private ?int $order = null;
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
+    private ?string $instruction = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $secretCode = null;
 
     #[ORM\ManyToOne(inversedBy: 'enigmas')]
-    private ?User $createdBy = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Game $game = null;
+
+    #[ORM\ManyToOne(inversedBy: 'enigmas')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Type $type = null;
+
+    /**
+     * @var Collection<int, Thumbnail>
+     */
+    #[ORM\OneToMany(targetEntity: Thumbnail::class, mappedBy: 'enigma', cascade: ['persist', 'remove'])]
+    private Collection $thumbnails;
+
+    public function __construct()
+    {
+        $this->thumbnails = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -41,32 +65,98 @@ class Enigma
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getOrder(): ?int
     {
-        return $this->description;
+        return $this->order;
     }
 
-    public function setDescription(?string $description): static
+    public function setOrder(int $order): static
     {
-        $this->description = $description;
+        $this->order = $order;
 
         return $this;
     }
 
-    public function getCreatedBy(): ?User
+    public function getInstruction(): ?string
     {
-        return $this->createdBy;
+        return $this->instruction;
     }
 
-    public function setCreatedBy(?User $createdBy): static
+    public function setInstruction(?string $instruction): static
     {
-        $this->createdBy = $createdBy;
+        $this->instruction = $instruction;
+
+        return $this;
+    }
+
+    public function getSecretCode(): ?string
+    {
+        return $this->secretCode;
+    }
+
+    public function setSecretCode(?string $secretCode): static
+    {
+        $this->secretCode = $secretCode;
+
+        return $this;
+    }
+
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setGame(?Game $game): static
+    {
+        $this->game = $game;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Thumbnail>
+     */
+    public function getThumbnails(): Collection
+    {
+        return $this->thumbnails;
+    }
+
+    public function addThumbnail(Thumbnail $thumbnail): static
+    {
+        if (!$this->thumbnails->contains($thumbnail)) {
+            $this->thumbnails->add($thumbnail);
+            $thumbnail->setEnigma($this);
+        }
+
+        return $this;
+    }
+
+    public function removeThumbnail(Thumbnail $thumbnail): static
+    {
+        if ($this->thumbnails->removeElement($thumbnail)) {
+            // set the owning side to null (unless already changed)
+            if ($thumbnail->getEnigma() === $this) {
+                $thumbnail->setEnigma(null);
+            }
+        }
 
         return $this;
     }
 
     public function __toString(): string
     {
-        return $this->title;
+        return $this->title ?? '';
     }
 }

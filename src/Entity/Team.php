@@ -18,8 +18,21 @@ class Team
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::DATETIMETZ_MUTABLE)]
-    private ?\DateTime $creationDate = null;
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $position = null;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private ?int $currentEnigma = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $note = null;
+
+    #[ORM\ManyToOne(inversedBy: 'teams')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Game $game = null;
+
+    #[ORM\ManyToOne(inversedBy: 'teams')]
+    private ?Avatar $avatar = null;
 
     public function getId(): ?int
     {
@@ -38,20 +51,68 @@ class Team
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTime
+    public function getPosition(): ?int
     {
-        return $this->creationDate;
+        return $this->position;
     }
 
-    public function setCreationDate(\DateTime $creationDate): static
+    public function setPosition(?int $position): static
     {
-        $this->creationDate = $creationDate;
+        $this->position = $position;
 
         return $this;
     }
 
-    public function __construct()
+    public function getCurrentEnigma(): ?int
     {
-        $this->creationDate = new \DateTime();
+        return $this->currentEnigma;
+    }
+
+    public function setCurrentEnigma(?int $currentEnigma): static
+    {
+        $this->currentEnigma = $currentEnigma;
+
+        return $this;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    public function setNote(?string $note): static
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setGame(?Game $game): static
+    {
+        $this->game = $game;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?Avatar $avatar): static
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?? '';
     }
 }
