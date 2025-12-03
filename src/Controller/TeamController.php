@@ -83,4 +83,29 @@ final class TeamController extends AbstractController
 
         return $this->redirectToRoute('app_team_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/team/create', name: 'team_create')]
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $team = new Team();
+        $form = $this->createForm(TeamType::class, $team);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($team);
+            $entityManager->flush();
+
+            if (!$this->getUser()) {
+                $this->addFlash('success', 'Votre équipe a bien été créée ! Connectez-vous pour la gérer.');
+                return $this->redirectToRoute('app_main');
+            }
+
+            return $this->redirectToRoute('app_team_show', ['id' => $team->getId()]);
+        }
+
+        return $this->render('team/create.html.twig', [
+            'team' => $team,
+            'form' => $form,
+        ]);
+    }
 }

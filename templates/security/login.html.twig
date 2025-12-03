@@ -10,10 +10,12 @@
 		{% endif %}
 
 		{% if app.user %}
-			<div class="mb-3">
+			{# <div class="mb-3 alert alert-info">
 				Vous êtes connecté en tant que
 				<b>{{ app.user.userIdentifier }}</b>. Voulez-vous vous <a href="{{ path('app_logout') }}">déconnecter</a> ?
-			</div>
+			</div> #}
+			{# Redirection vers la page d'accueil #}
+			{% do app.response.redirectToRoute('app_home') %}
 		{% endif %}
 
 		<h1 class="h3 mb-3 font-weight-normal">Connexion en tant qu'enseignant ou administrateur</h1>

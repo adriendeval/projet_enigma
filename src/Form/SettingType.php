@@ -16,7 +16,7 @@ class SettingType extends AbstractType
         $builder
             ->add('game', EntityType::class, [
                 'class' => Game::class,
-                'choice_label' => 'id',
+                'choice_label' => 'title',
                 'label' => 'Paramètre de jeu',
                 'placeholder' => 'Sélectionnez un paramètre de jeu',
                 'attr' => [
